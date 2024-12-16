@@ -9,6 +9,7 @@ const createTables = async()=>{
         DROP TABLE IF EXISTS department;
         DROP TABLE IF EXISTS education_level;
         DROP TABLE IF EXISTS location;
+        DROP TABLE IF EXISTS compensation;
 
         CREATE TABLE department(
             id UUID PRIMARY KEY,
@@ -33,7 +34,8 @@ const createTables = async()=>{
             department_name VARCHAR(25) NOT NULL,
             education VARCHAR(25),
             start_date DATE,
-            location_id UUID
+            location_id UUID,
+            yearly_salary NUMERIC(7,2),
             FOREIGN KEY (location_id) REFERENCES location(id),
             FOREIGN KEY (department_name) REFERENCES department(department_name),
             FOREIGN KEY (education) REFERENCES education_level(degree_level)
