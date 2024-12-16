@@ -42,7 +42,19 @@ const createTables = async()=>{
     await client.query(SQL);
 };
 
+const seedLocations = async () => {
+    const SQL = `
+      INSERT INTO location (id, state_in_us)
+      VALUES ($1, $2)
+      ON CONFLICT DO NOTHING;
+    `;
+    for (const state of states) {
+      await client.query(SQL, [uuid.v4(), state]);
+    }
+  };
+
 module.exports = {
     client,
     createTables,
+    seedLocations
     };
