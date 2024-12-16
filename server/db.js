@@ -44,5 +44,5 @@ const createTables = async()=>{
 
 module.exports = {
     client,
-    createTables
-};
+    createTables,
+    };
