@@ -4,12 +4,20 @@ const uuid = require('uuid');
 
 const createTables = async()=>{
     const SQL = `
-        DROP TABLE IF EXISTS users;
-        CREATE TABLE users(
+        DROP TABLE IF EXISTS employee;
+        DROP TABLE IF EXISTS department;
+
+        CREATE TABLE department(
             id UUID PRIMARY KEY,
-            adminhr VARCHAR(20) UNIQUE NOT NULL,
-            accountant VARCHAR(20) UNIQUE NOT NULL,
-            employee VARCHAR(20) UNIQUE NOT NULL
+            department_name VARCHAR(25),
+        );
+        
+        CREATE TABLE employee(
+            id UUID PRIMARY KEY,
+            name VARCHAR(25) UNIQUE NOT NULL,
+            position VARCHAR(25) UNIQUE NOT NULL
+            department REFERENCES department(department_name)
+            start_date DATE,
         );
     `;
     await client.query(SQL);
