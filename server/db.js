@@ -6,18 +6,27 @@ const createTables = async()=>{
     const SQL = `
         DROP TABLE IF EXISTS employee;
         DROP TABLE IF EXISTS department;
+        DROP TABLE IF EXISTS education_level;
 
         CREATE TABLE department(
             id UUID PRIMARY KEY,
-            department_name VARCHAR(25),
+            department_name VARCHAR(25) UNIQUE NOT NULL
+        );
+
+        CREATE TABLE education_level(
+            id UUID PRIMARY KEY,
+            degree_level VARCHAR(25) UNIQUE NOT NULL,
         );
         
         CREATE TABLE employee(
             id UUID PRIMARY KEY,
             name VARCHAR(25) UNIQUE NOT NULL,
-            position VARCHAR(25) UNIQUE NOT NULL
-            department REFERENCES department(department_name)
+            position VARCHAR(25) NOT NULL,
+            department_name VARCHAR(25) NOT NULL,
+            education VARCHAR(25),
             start_date DATE,
+            FOREIGN KEY (department_name) REFERENCES department(department_name),
+            FOREIGN KEY (education) REFERENCES education_level(degree_level)
         );
     `;
     await client.query(SQL);
