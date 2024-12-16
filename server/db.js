@@ -35,10 +35,21 @@ const createTables = async()=>{
             education VARCHAR(25),
             start_date DATE,
             location_id UUID,
-            yearly_salary NUMERIC(7,2),
+            base_yearly_salary NUMERIC(7,2),
             FOREIGN KEY (location_id) REFERENCES location(id),
             FOREIGN KEY (department_name) REFERENCES department(department_name),
             FOREIGN KEY (education) REFERENCES education_level(degree_level)
+        );
+
+        CREATE TABLE current_payroll(
+            id UUID PRIMARY KEY,
+            employee_id UUID,
+            days_worked NUMERIC(2, 2),
+            pto_hours_used NUMERIC(2, 2),
+            paid_leave_hours_used NUMERIC(2, 2),
+            unpaid_hours_used NUMERIC(2, 2),
+            pay_date DATE,
+            FOREIGN KEY (employee_id) REFERENCES employee(id)
         );
     `;
     await client.query(SQL);
