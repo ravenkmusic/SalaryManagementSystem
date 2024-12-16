@@ -1,7 +1,9 @@
 const {
     client,
-    createTables
+    createTables,
+    seedLocations
 } = require('./db');
+
 const express = require('express');
 const app = express();
 app.use(express.json());
@@ -16,8 +18,8 @@ const init = async()=> {
     await client.connect();
     console.log('You are now connected to the database.');
     await createTables();
-    
-    console.log('You have created tables.');
+    await seedLocations();
+    console.log('You have created all tables.');
     app.listen(port, ()=> console.log(`Listening on port ${port}.`));
 };
 
