@@ -28,8 +28,7 @@ const createTables = async()=>{
         
         CREATE TABLE employee(
             id UUID PRIMARY KEY,
-            fname VARCHAR(25) UNIQUE NOT NULL,
-            lname VARCHAR(25) UNIQUE NOT NULL,
+            fname_lname VARCHAR(35) NOT NULL,
             position VARCHAR(25) NOT NULL,
             department_name VARCHAR(25) NOT NULL,
             education VARCHAR(25),
