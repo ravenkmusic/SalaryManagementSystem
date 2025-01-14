@@ -76,6 +76,15 @@ const createEmployee = async ({fname_lname, position, department_name, education
     return response.rows[0];
 };
 
+const fetchEmployee = async () => {
+    const SQL = `
+        SELECT id, fname_lname
+        FROM employee
+     `;
+     const response = await client.query(SQL);
+     return response.rows;
+};
+
 module.exports = {
     client,
     createTables,
