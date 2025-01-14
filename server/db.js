@@ -54,7 +54,7 @@ const createTables = async()=>{
 
 };
 
-const seedLocations = async () => {
+const seedLocations = async()=> {
     const SQL = `
       INSERT INTO location (id, state_in_us)
       VALUES ($1, $2)
@@ -65,7 +65,7 @@ const seedLocations = async () => {
     }
 };
 
-const createEmployee = async ({fname_lname, position, department_name, education, start_date, location_id, base_yearly_salary}) => {
+const createEmployee = async({fname_lname, position, department_name, education, start_date, location_id, base_yearly_salary})=> {
     const SQL = `
       INSERT INTO employee(id, fname_lname, position, department_name, education, start_date, location_id, base_yearly_salary)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
@@ -75,7 +75,7 @@ const createEmployee = async ({fname_lname, position, department_name, education
     return response.rows[0];
 };
 
-const fetchEmployee = async () => {
+const fetchEmployee = async()=> {
     const SQL = `
         SELECT id, fname_lname
         FROM employee
@@ -84,7 +84,7 @@ const fetchEmployee = async () => {
      return response.rows;
 };
 
-const deleteEmployee = async (params) => {
+const deleteEmployee = async ({employee, }) => {
     
 };
 
