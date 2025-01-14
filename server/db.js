@@ -9,7 +9,6 @@ const createTables = async()=>{
         DROP TABLE IF EXISTS department;
         DROP TABLE IF EXISTS education_level;
         DROP TABLE IF EXISTS location;
-        DROP TABLE IF EXISTS compensation;
 
         CREATE TABLE department(
             id UUID PRIMARY KEY,
