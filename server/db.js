@@ -84,9 +84,14 @@ const fetchEmployee = async () => {
      return response.rows;
 };
 
+const deleteEmployee = async (params) => {
+    
+};
+
 module.exports = {
     client,
     createTables,
     seedLocations,
-    createEmployee
+    createEmployee,
+    fetchEmployee
 };
