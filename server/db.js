@@ -75,7 +75,7 @@ const createEmployee = async({fname_lname, position, department_name, education,
     return response.rows[0];
 };
 
-const fetchEmployee = async()=> {
+const fetchEmployees = async()=> {
     const SQL = `
         SELECT id, fname_lname
         FROM employee
@@ -93,5 +93,5 @@ module.exports = {
     createTables,
     seedLocations,
     createEmployee,
-    fetchEmployee
+    fetchEmployees
 };
