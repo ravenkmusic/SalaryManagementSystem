@@ -52,6 +52,7 @@ const createTables = async()=>{
         );
     `;
     await client.query(SQL);
+
 };
 
 const seedLocations = async () => {
@@ -63,10 +64,21 @@ const seedLocations = async () => {
     for (const state of states) {
       await client.query(SQL, [uuid.v4(), state]);
     }
-  };
+};
+
+const createEmployee = async ({fname_lname, position, department_name, education, start_date, location_id, base_yearly_salary}) => {
+    const SQL = `
+      INSERT INTO employee(id, fname_lname, position, department_name, education, start_date, location_id, base_yearly_salary)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      RETURNING *
+    `;
+    const response = await client.query(SQL, [uuid.v4(), fname_lname, position, department_name, education, start_date, location_id, base_yearly_salary]);
+    return response.rows[0];
+};
 
 module.exports = {
     client,
     createTables,
-    seedLocations
-    };
+    seedLocations,
+    createEmployee
+};
