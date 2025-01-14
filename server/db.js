@@ -84,8 +84,12 @@ const fetchEmployees = async()=> {
      return response.rows;
 };
 
-const deleteEmployee = async ({employee, }) => {
-    
+const destroyEmployee = async (id) => {
+    const SQL = `
+        DELETE FROM employee
+        WHERE id = $1
+    `;
+    await client.query(SQL, [id]);
 };
 
 module.exports = {
@@ -93,5 +97,6 @@ module.exports = {
     createTables,
     seedLocations,
     createEmployee,
-    fetchEmployees
+    fetchEmployees,
+    destroyEmployee
 };
