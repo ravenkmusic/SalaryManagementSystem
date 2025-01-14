@@ -47,7 +47,7 @@ const createTables = async()=>{
             paid_leave_hours_used NUMERIC(2, 2),
             unpaid_hours_used NUMERIC(2, 2),
             pay_date DATE,
-            FOREIGN KEY (employee_id) REFERENCES employee(id)
+            FOREIGN KEY (employee_id) REFERENCES employee(id) ON DELETE CASCADE
         );
     `;
     await client.query(SQL);
